@@ -5,6 +5,6 @@ module.exports = {
     src: '/_dist_',
   },
   buildOptions: {
-    baseUrl: 'https://chrxs14.github.io/proyecto-aguacate/',
+    baseUrl: 'https://chrxs14.github.io/proyecto-aguacate',
   },
 }
