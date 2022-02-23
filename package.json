@@ -1,5 +1,5 @@
 {
-   "homepage": "https://chrxs14.github.io/proyecto-aguacate",
+   "homepage": "https://chrxs14.github.io/proyecto-aguacate/",
    "scripts": {
       "start": "snowpack dev",
       "build": "snowpack build",
