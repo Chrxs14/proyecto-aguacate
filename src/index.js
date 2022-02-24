@@ -10,32 +10,40 @@ const formatPrice = (price)=>{
     return newPrice
 }
 
-window.fetch(`${url}/api/avo`)
-.then((respuesta) => respuesta.json())
-.then(element=>{
-    const allElements  = []
-    element.data.forEach(item => {
-        const create_img = document.createElement('img')
-        create_img.src = url + item.image
+async function fetchData(){
+    try{
 
-        const create_title = document.createElement('h2')
-        create_title.textContent = item.name
+        const req = await fetch(`${url}/api/avo`)
+        const reqJson = await req.json()
+        let allElements = []
 
-        const price = document.createElement('p')
-        price.textContent = formatPrice(item.price)
+        reqJson.data.forEach(item => {
+            const create_img = document.createElement('img')
+            create_img.src = url + item.image
 
-        const create_container = document.createElement('div')
-        const create_textContainer = document.createElement('div')
-        create_textContainer.append(create_title, price)
-        create_container.append(create_img, create_textContainer)
-        
-        allElements.push(create_container)
-        
-        // Styles
-        create_container.className = 'card'
-        create_img.className = 'card-img'
+            const create_title = document.createElement('h2')
+            create_title.textContent = item.name
 
-    })
-    container.append(...allElements)
-    container.className = 'main'
-})
+            const price = document.createElement('p')
+            price.textContent = formatPrice(item.price)
+
+            const create_container = document.createElement('div')
+            const create_textContainer = document.createElement('div')
+            create_textContainer.append(create_title, price)
+            create_container.append(create_img, create_textContainer)
+            
+            allElements.push(create_container)
+            
+            // Styles
+            create_container.className = 'card'
+            create_img.className = 'card-img'
+        });
+        await container.append(...allElements)
+        container.className = 'main'
+    }
+    catch(e){
+        console.error(e)   
+    }
+}
+
+fetchData()
